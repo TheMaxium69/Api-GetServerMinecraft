@@ -9,6 +9,10 @@ function getRoles($uuid){
     $rolesSelected=null;
     $i = 0;
 
+    if (empty($userSelectedFile['parents'])){
+        return "no roles";
+    }
+
     foreach ($userSelectedFile['parents'] as $parents){
 
         $roleOneFile = getFile($l_groupsDir . $parents['group'] . ".json");
