@@ -1,7 +1,6 @@
 <?php
 
 // INIT
-include "env.php";
 
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
@@ -18,20 +17,42 @@ require "factions/init.php";
 
 if (empty($_GET['task'])){
 
-    $faction = getFactionByUser($pseudo);
+    $result['faction'] = getFactionByUser($pseudo);
 
-    echo json_encode($faction);
 
+    echo json_encode([
+        "status"=>"ok",
+        "message"=>"Information de " . $pseudo,
+        "result"=>$result
+    ]);
 
 } else {
 
     $task = $_GET['task'];
 
+    if ($task == "faction"){
 
+        $result = getFactionByUser($pseudo);
+
+        echo json_encode([
+            "status"=>"ok",
+            "message"=>"La faction de " . $pseudo,
+            "result"=>$result
+        ]);
+
+
+    } else {
+
+        echo json_encode([
+            "status"=>"ok",
+            "message"=>"task inconnue"
+        ]);
+
+
+    }
 
 
 }
-
 
 
 ?>
