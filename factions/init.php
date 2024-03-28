@@ -2,7 +2,7 @@
 
 function getFactionByUser($pseudo){
 
-    include "./env.php";
+    require "./env.php";
 
     $factionsFile = getFile($f_factionsFile);
     $playersFile = getFile($f_playersFile);
@@ -25,9 +25,7 @@ function getFactionByUser($pseudo){
                 ];
             }
         }
-
     }
-
 
     if ($factionSelected == null){
         $message = "no faction";
